@@ -1,0 +1,45 @@
+<div>
+    <div nz-row>
+      <h1 nz-card-grid [ngStyle]="gridStyle">요약</h1>
+    </div>
+
+    <div nz-row class="centered-row" *ngIf="statsData">
+        <div nz-col [nzXs]="{span:5, offset:1}" [nzLg]="{span:6, offset:2}">
+            <nz-card nzTitle="총 소모 칼로리" style="background-color: aliceblue;">
+                <p>{{statsData.totalCaloriesBurned}} kcal</p>
+            </nz-card>
+        </div>
+    
+        <div nz-col [nzXs]="{span:5, offset:1}" [nzLg]="{span:6, offset:2}">
+            <nz-card nzTitle="총 거리" style="background-color: aliceblue;">
+                <p>{{statsData.distance | number:'1.1-1'}} km</p>
+            </nz-card>
+        </div>
+    
+        <div nz-col [nzXs]="{span:5, offset:1}" [nzLg]="{span:6, offset:2}">
+            <nz-card nzTitle="총 걸음 수" style="background-color: aliceblue;">
+                <p>{{statsData.steps}} 걸음</p>
+            </nz-card>
+        </div>
+    </div>
+    
+    <div nz-row class="centered-row" style="margin-top: 20px;" *ngIf="statsData">
+        <div nz-col [nzXs]="{span:5, offset:1}" [nzLg]="{span:6, offset:2}">
+            <nz-card nzTitle="총 소모 시간" style="background-color: aliceblue;">
+                <p>{{statsData.duration}} 분</p>
+            </nz-card>
+        </div>
+    
+        <div nz-col [nzXs]="{span:5, offset:1}" [nzLg]="{span:6, offset:2}">
+            <nz-card nzTitle="목표 달성" style="background-color: aliceblue;">
+                <p>{{statsData.achievedGoals}}</p>
+            </nz-card>
+        </div>
+    
+        <div nz-col [nzXs]="{span:5, offset:1}" [nzLg]="{span:6, offset:2}">
+            <nz-card nzTitle="목표 미달성" style="background-color: aliceblue;">
+                <p>{{statsData.notAchievedGoals}}</p>
+            </nz-card>
+        </div>
+    </div>
+</div> 

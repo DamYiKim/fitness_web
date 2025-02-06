@@ -1,0 +1,71 @@
+/* activity.component.scss */
+.activity-entry {
+    padding: 4px;
+    margin: 2px;
+    background: #001529;
+    color: white;
+    border-radius: 8px;
+    font-size: 0.7em;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+    padding-right: 10px;
+  
+    &:hover {
+      background: #283548;
+    }
+  }
+  
+  .ant-picker-calendar-date-content {
+    height: 120px;
+    overflow-y: auto;
+  }
+
+  .tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 5px;
+    margin-top: 20px;
+  }
+  
+  .tracker-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .tracker-day.completed {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .tracker-day span {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 12px;
+  }
+
+  .custom-edit-btn {
+    position: absolute;
+    top: 15%;
+    right: 5px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: red;
+    font-size: 8px; 
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.custom-edit-btn:hover {
+    color: darkred;
+}

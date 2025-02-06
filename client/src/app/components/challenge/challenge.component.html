@@ -1,0 +1,52 @@
+<div>
+  <div nz-row>
+    <h1 nz-card-grid [ngStyle]="gridStyle">챌린지</h1>
+  </div>
+
+  <div nz-row>
+    <div nz-col nzFlex="1">
+      <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="챌린지 등록">
+        <form nz-form [formGroup]="challengeForm" class="custom-form" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="올바르지 않는 입력입니다">
+              <input nz-input formControlName="title" placeholder="챌린지 이름을 입력하세요">
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="올바르지 않는 입력입니다">
+              <textarea nz-input formControlName="description" placeholder="설명을 입력하세요"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button nzType="primary" nzBlock="w-100" [disabled]="challengeForm.invalid">
+            등록
+          </button>
+        </form>
+      </nz-card>
+    </div>
+
+    <div nz-col nzFlex="2" style="margin-left: 20px;">
+      <div nz-col nzFlex="2" style="margin-left: 20px;">
+        <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="챌린지 기록">
+            <div *ngFor="let challenge of challenges" class="challenge-card">
+                <nz-card nzType="inner" [nzTitle]="titleTemplate" [nzExtra]="extraTemplate">
+                    <p class="description">{{ challenge.description }}</p>
+                    <div class="tracker-grid">
+                        <div *ngFor="let day of daysInMonth" class="tracker-day" [class.completed]="isCompleted(challenge, day)" (click)="toggleCompletion(challenge, day)">
+                            {{ day.getDate() }}
+                            <span nz-icon nzType="check" *ngIf="isCompleted(challenge, day)"></span>
+                        </div>
+                    </div>
+                </nz-card>
+                <ng-template #titleTemplate>
+                    <div class="title-container">
+                        <span class="card-title">{{ challenge.title }}</span>
+                    </div>
+                </ng-template>
+                <ng-template #extraTemplate>
+                    <button nz-button nzType="default" (click)="deleteChallenge(challenge.id)">삭제</button>
+                </ng-template>
+            </div>
+        </nz-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div>
+    <div nz-row>
+        <h1 nz-card-grid [ngStyle]="gridStyle">활동</h1>
+    </div>
+
+    <div nz-row>
+        <div nz-col nzFlex="1">
+            <nz-card nzType="inner" style = "margin-top: 16px;" nzTitle="활동 기록">
+                <form nz-form [formGroup]="activityForm" class = "custom-form" (ngSubmit)="submitForm()">
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="올바르지 않는 입력입니다" >
+                            <nz-date-picker style="width: 100%;" formControlName="date" nzPlaceHolder="날짜를 입력하세요"></nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+                    
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="올바르지 않는 입력입니다">
+                            <input type="text" nz-input formControlName="caloriesBurned"
+                            placeholder="소모한 칼로리를 입력하세요"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="올바르지 않는 입력입니다">
+                            <input type="number" nz-input formControlName="distance"
+                            placeholder="걸은 거리를 입력하세요"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="올바르지 않는 입력입니다">
+                            <input type="number" nz-input formControlName="steps"
+                            placeholder="총 걸음 수를 입력하세요"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="올바르지 않는 입력입니다" style="text-align: left;">
+                            <nz-select nzAllowClear nzPlaceHolder="종류를 선택하세요" formControlName="type" style="text-align: left;">
+                                <nz-option *ngFor="let type of listOfType" [nzLabel]="type" [nzValue]="type"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="올바르지 않는 입력입니다">
+                            <input type="number" nz-input formControlName = "duration" placeholder="시간을 입력하세요"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button nz-button nzType="primary" nzBlock="w-100" [disabled]="activityForm.invalid">
+                        기록
+                    </button>
+                </form>
+            </nz-card>
+        </div>
+        <div nz-col nzFlex="2" style="margin-left: 20px;">
+            <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="활동 내역">
+                <div class="calendar-container">
+                    <nz-calendar>
+                        <ng-container *nzDateCell="let date">
+                            <div *ngFor="let activity of getActivitiesForDate(date)">
+                                <div class="activity-entry">
+                                    <div>🔥 {{activity.caloriesBurned}} kcal</div>
+                                    <div>🛣️ {{activity.distance}} km</div>
+                                    <div>👟 {{activity.steps}} 걸음</div>
+                                    <div>💪 {{activity.type}} | {{activity.duration}}분</div>
+                                    <button (click)="deleteActivity(activity.id)" class="custom-edit-btn">❌</button>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </nz-calendar>
+                </div>       
+            </nz-card>
+        </div>
+    </div>
+
+    
+</div>

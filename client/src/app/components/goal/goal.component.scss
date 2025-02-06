@@ -1,0 +1,25 @@
+
+.achieve-button {
+    background-color: #001529;
+    color: white;
+}
+
+.left-align, .center-align, .right-align {
+    margin-top: 20px;   
+    margin-bottom: 20px; 
+}
+
+.title-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+  }
+
+.card-title {
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+  }
